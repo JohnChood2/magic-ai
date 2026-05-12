@@ -24,12 +24,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: npm
-          cache-dependency-path: frontend/package-lock.json
+          # NOTE: npm cache disabled until frontend/package-lock.json is
+          # committed. Once you've run `npm install` locally and pushed the
+          # lockfile, re-enable by adding:
+          #   cache: npm
+          #   cache-dependency-path: frontend/package-lock.json
+          # and switch the install step below to `npm ci`.
 
       - name: Install dependencies
-        # No lockfile yet — use npm install on first run; switch to `ci` once
-        # package-lock.json is committed.
         run: npm install
 
       - name: Typecheck
