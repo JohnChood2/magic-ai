@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MagicGPT</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <header>
+    <h1>MagicGPT</h1>
+    <span class="tag">Unofficial MTG card search &amp; Commander helper</span>
+  </header>
+
+  <main id="chat" aria-live="polite">
+    <div class="msg assistant">
+      <div class="bubble">Ask me about Magic cards, e.g. “show me blue creatures with flying and mana value 3 or less in Commander.”</div>
+    </div>
+  </main>
+
+  <form id="composer" autocomplete="off">
+    <input id="input" type="text" placeholder="Ask about a card or deck…" required maxlength="2000">
+    <button id="send" type="submit">Send</button>
+  </form>
+
+  <div id="hover-preview" hidden><img alt=""></div>
+
+  <footer>
+    Unofficial Fan Content permitted under the
+    <a href="https://company.wizards.com/en/legal/fancontentpolicy" target="_blank" rel="noopener">Fan Content Policy</a>.
+    Not approved/endorsed by Wizards. Portions of the materials used are property of Wizards of the Coast. ©Wizards of the Coast LLC.
+  </footer>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

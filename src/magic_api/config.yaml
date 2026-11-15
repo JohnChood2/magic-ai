@@ -1,0 +1,38 @@
+# Single source of truth for all MagicGPT services.
+# Read through magic_api.utils.config -- never parse this file directly.
+#
+# Override the file location with the MAGIC_API_CONFIG environment variable.
+# Secrets (e.g. ANTHROPIC_API_KEY) are NOT stored here; use the environment.
+#
+# Relative sqlite paths resolve against the repository root.
+# Only the database service opens the database; the other services keep the
+# URL so they can be pointed at a shared/remote database later.
+
+ui:
+  host: 127.0.0.1
+  port: 8080
+  database_url: &db_url "sqlite:///data/magic.db"
+
+backend:
+  host: 127.0.0.1
+  port: 8000
+  database_url: *db_url
+  scryfall_api_base: https://api.scryfall.com
+  # Scryfall asks fan projects to identify themselves and pace requests.
+  scryfall_user_agent: "MagicGPT/0.1 (+https://github.com/your-org/magic-ai)"
+  scryfall_min_delay_ms: 150
+  log_level: INFO
+
+ai:
+  host: 127.0.0.1
+  port: 8001
+  database_url: *db_url
+  model: claude-sonnet-5-5
+  max_tokens: 1024
+  max_turns: 5                  # safety ceiling on tool_use round trips
+  max_cards_returned_to_model: 12
+
+database:
+  host: 127.0.0.1
+  port: 8002
+  database_url: *db_url
